@@ -22,7 +22,6 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskViewHolder> {
         this.ctx = ctx;
     }
 
-
     @NonNull
     @Override
     public TaskViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -45,11 +44,10 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskViewHolder> {
                 notifyItemRemoved(holder.getAdapterPosition());
             }
         });
-
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return tasks.size(); //esto es lo que presenta por pantalla
     }
 }
