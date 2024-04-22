@@ -10,6 +10,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
+import com.example.taskorganizer.creation.TaskCreateFragment;
 import com.example.taskorganizer.list.TaskListFragment;
 import com.google.android.material.navigation.NavigationView;
 
@@ -20,12 +21,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar =  findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open,R.string.navigation_drawer_close);
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
@@ -34,7 +35,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         initFragmentList();
     }
 
-    void initFragmentList(){
+    void initFragmentList() {
         TaskListFragment fragment = new TaskListFragment();
         getSupportFragmentManager().beginTransaction().replace(R.id.flContainer, fragment).commit();
     }
@@ -58,20 +59,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         if (id == R.id.nav_task_list) {
             fragment = new TaskListFragment();
+        } else if (id == R.id.nav_task_create) {
+            fragment = new TaskCreateFragment();
         } else if (id == R.id.nav_task_search) {
             //fragment = new TaskListFragment();
         } else if (id == R.id.nav_calendar) {
-           // fragment = new TaskListFragment();
+            // fragment = new TaskListFragment();
         } else if (id == R.id.nav_logout) {
-           // fragment = new TaskListFragment();
+            // fragment = new TaskListFragment();
         }
 
-        if(isFragment){
+        if (isFragment) {
             getSupportFragmentManager().beginTransaction().replace(R.id.flContainer, fragment).commit();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
-      }
+    }
 }

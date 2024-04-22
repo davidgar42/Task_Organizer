@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.taskorganizer.R;
 import com.example.taskorganizer.list.models.Task;
+import com.example.taskorganizer.utils.PreferencesManager;
 
 import java.util.List;
 
@@ -40,8 +41,12 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskViewHolder> {
             @Override
             public void onClick(View v) {
                 //codigo para eliminar una task
+
                 tasks.remove(holder.getAdapterPosition());
                 notifyItemRemoved(holder.getAdapterPosition());
+
+                PreferencesManager pm = new PreferencesManager(ctx);
+                pm.saveTaskList(tasks); //guardamos las lista sin los items que se borraron
             }
         });
     }
